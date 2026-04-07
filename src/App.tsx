@@ -123,7 +123,7 @@ const App = () => {
         id: Date.now() + 1,
         role: 'assistant',
         content:
-          '⚠️ Desculpe, ocorreu um erro ao processar sua pergunta. Tente novamente.',
+          '⚠️ Tokens insuficientes. Por favor, tente novamente mais tarde. (isso acontece por ser modelo de LLM gratuito, mas estamos trabalhando para melhorar!)',
       }
       setMessages((prev) => [...prev, errorMessage])
     } finally {
