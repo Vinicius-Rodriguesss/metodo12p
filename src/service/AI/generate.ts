@@ -1,10 +1,10 @@
-// import 'dotenv/config'
+
 import { GoogleGenerativeAI } from '@google/generative-ai'
 import { montarPromptProduto } from './prompt.js'
 import type { GerarRespostaProdutoParams } from './types.js'
 
 
-const apiKey = "AIzaSyCApbwNWTQK1FENL8Bymok-BGhbCyYuCIE"
+const apiKey = "AIzaSyDaejZxouwwTeqNmoVWPfxD1lqZRXb0ZWc"
 
 export async function gerarRespostaProduto({
   pergunta,
