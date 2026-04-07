@@ -5,7 +5,7 @@ import type { GerarRespostaProdutoParams } from './types.js'
 
 
 const apiKey = "AIzaSyDaejZxouwwTeqNmoVWPfxD1lqZRXb0ZWc"
-alert('atenção: se aparecer o erro "⚠️ desculpe, ocorreu um erro ao processar sua pergunta. tente novamente.", pode ser que a chave tenha sido invalidada por restrições do navegador. nesse caso, solicite uma nova chave ao vinicius :)')
+alert('atenção: se aparecer o erro "⚠️ desculpe, ocorreu um erro ao processar sua pergunta. tente novamente.", a chave pode ter sido bloqueada pelo navegador, pois a aplicação está rodando apenas no front-end. nesse caso, solicite uma nova chave ao vinicius :)')
 
 export async function gerarRespostaProduto({
   pergunta,
