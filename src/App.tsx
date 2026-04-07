@@ -1,9 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import type { FormEvent } from 'react'
 
-import { gerarRespostaProduto } from './service/AI/generate.js'
-import estoque from './Mock/index.js'
-
 type Message = {
   id: number
   role: 'assistant' | 'user'
@@ -90,24 +87,28 @@ const App = () => {
     setIsLoading(true)
 
     try {
-      const historico = updatedMessages
-        .slice(-6)
-        .map((msg) =>
-          `${msg.role === 'user' ? 'Usuário' : 'Assistente'}: ${msg.content}`
-        )
-        .join('\n')
-
-      const respostaIA = await gerarRespostaProduto({
-        pergunta: userText,
-        contexto: `
-Histórico da conversa:
-${historico}
-
-Base de dados:
-${JSON.stringify(estoque)}
-        `,
-        nomeEmpresa: 'Metodo 12P',
+      const response = await fetch('https://back-12-p.vercel.app/ai', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          pergunta: userText,
+          nomeEmpresa: 'Metodo 12P',
+        }),
       })
+
+      if (!response.ok) {
+        throw new Error(`Erro na API: ${response.status}`)
+      }
+
+      const data = await response.json()
+
+      if (data.error) {
+        throw new Error(data.error)
+      }
+
+      const respostaIA = data.resposta
 
       const assistantMessage: Message = {
         id: Date.now() + 1,
